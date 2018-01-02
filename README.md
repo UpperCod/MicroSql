@@ -56,8 +56,12 @@ Select permite generar la consulta de selecion, ud podra usar una serie de propi
 
 ### select@and
 
+##### SQL
+```Sql
+SELECT * FROM mi_tabla AS mi_tabla  WHERE ID = :ID AND USER = :USER
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla  WHERE ID = :ID AND USER = :USER
 $db->mi_tabla->select([
 	'ID'  => 'valor 1',
   	'USER'  => 'valor 2'
@@ -80,8 +84,12 @@ $db->mi_tabla->select([
 
 ### select@or
 
+##### Sql
+```SQL
+SELECT * FROM mi_tabla AS mi_tabla  WHERE ( ID = :or_0_ID ) OR ( ID = :or_1_ID )
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla  WHERE ( ID = :or_0_ID ) OR ( ID = :or_1_ID )
 $db->mi_tabla->select([
     '@or' => [
         [
@@ -96,8 +104,12 @@ $db->mi_tabla->select([
 
 ### select@limit
 
+##### SQL
+```SQL
+SELECT * FROM mi_tabla AS mi_tabla LIMIT 10
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla LIMIT 10
 $db->mi_tabla->select([
 	'@limit'=>10
 ]);
@@ -105,8 +117,12 @@ $db->mi_tabla->select([
 
 ### select@join
 
+##### SQL
+```SQL
+SELECT * FROM mi_tabla AS mi_tabla INNER JOIN mi_otra_tabla AS mi_otra_tabla ON mi_otra_tabla.ID = mi_tabla.ID
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla INNER JOIN mi_otra_tabla AS mi_otra_tabla ON mi_otra_tabla.ID = mi_tabla.ID
 $db->mi_tabla->select([
   '@join'=>[
     'mi_otra_tabla'=>['mi_otra_tabla.ID'=>'mi_tabla.ID']
@@ -116,8 +132,12 @@ $db->mi_tabla->select([
 
 ### select@between
 
+##### SQL
+```SQL
+SELECT * FROM mi_tabla AS mi_tabla  WHERE id BETWEEN :between_id_0 AND :between_id_1
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla  WHERE id BETWEEN :between_id_0 AND :between_id_1
 $db->mi_tabla->select([
   '@between'=>[
     'id'=>[1,10]
@@ -127,8 +147,13 @@ $db->mi_tabla->select([
 
 ### select@in
 
+##### SQL
+```SQL
+SELECT * FROM mi_tabla AS mi_tabla  WHERE id IN (:in_id_0, :in_id_1)
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla  WHERE id IN (:in_id_0, :in_id_1)
+
 $db->mi_tabla->select([
   '@in'=>[
     'id'=>[1,10]
@@ -137,8 +162,12 @@ $db->mi_tabla->select([
 ```
 ### select@like
 
+##### SQL
+```SQL
+SELECT * FROM mi_tabla AS mi_tabla  WHERE id LIKE :like_id
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla  WHERE id LIKE :like_id
 $db->mi_tabla->select([
   '@like'=>[
     'id'=>'1'
@@ -149,8 +178,12 @@ $db->mi_tabla->select([
 
 ### select@not
 
+##### SQL
+```SQL
+SELECT * FROM mi_tabla AS mi_tabla  WHERE NOT ( id = :not_0_and_id  ) 
+```
+##### Php
 ```php
-// SELECT * FROM mi_tabla AS mi_tabla  WHERE NOT ( id = :not_0_and_id  ) 
 $db->mi_tabla->select([
   '@not'=>[
     [
@@ -163,5 +196,66 @@ $db->mi_tabla->select([
 ```
 
 
+### select@count
 
+##### SQL
+```SQL
+SELECT COUNT(ID) AS count_ID FROM mi_tabla AS mi_tabla
+```
+##### Php
+```php
+$db->mi_tabla->select([
+  '@count'=>'ID'
+]);
+```
+
+### select@avg
+
+##### SQL
+```SQL
+SELECT AVG(ID) AS count_ID FROM mi_tabla AS mi_tabla
+```
+##### Php
+```php
+$db->mi_tabla->select([
+  '@avg'=>'ID'
+]);
+```
+
+### select@sum
+
+##### SQL
+```SQL
+SELECT SUM(ID) AS count_ID FROM mi_tabla AS mi_tabla
+```
+##### Php
+```php
+$db->mi_tabla->select([
+  '@sum'=>'ID'
+]);
+```
+### select@min
+
+##### SQL
+```SQL
+SELECT MIN(ID) AS count_ID FROM mi_tabla AS mi_tabla
+```
+##### Php
+```php
+$db->mi_tabla->select([
+  '@min'=>'ID'
+]);
+```
+### select@max
+
+##### SQL
+```SQL
+SELECT MAX(ID) AS count_ID FROM mi_tabla AS mi_tabla
+```
+##### Php
+```php
+$db->mi_tabla->select([
+  '@max'=>'ID'
+]);
+```
 
