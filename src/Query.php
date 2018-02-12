@@ -119,10 +119,12 @@ class Query{
                     $bind[$alias] = $value;
             }
         }
-
-        $query = join(" ",$start).( 
-            count($and) ? $concat.join(" AND ",$and) : "" 
-        ).join(" ",$end);
+        
+        $query = join(" ",[
+            join(" ",$start),
+            count($and) ? $concat.join(" AND ",$and) : "" ,
+            join(" ",$end)
+        ]);
       
         return [ 
             $query,$bind
